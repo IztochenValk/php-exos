@@ -2,19 +2,20 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Model\Partie;
-use App\Model\Joueur;
-use App\Model\Des;
+use App\Model\Personnage;
+use App\Model\Guerrier;
+use App\Model\Assassin;
 
 use Symfony\Component\VarDumper\VarDumper;
 
-$desJ1 = new Des(0, 6);
-$desJ2 = new Des(0, 6);
+$guerrier = new Guerrier("Genghis Khan", 32, 12, 15);
+$assassin = new Assassin("Jack the reaper", 28, 15, 15);
 
-$nedFlanders = new Joueur("Ned Flanders", $desJ1);
-$homerSimpson = new Joueur("Homer Simpson", $desJ2);
+$guerrier->attaquer($assassin);
+echo $assassin->getNom() . " n'a désormais plus que " . $assassin->getVie() . " . PV.";
+VarDumper::dump($assassin);
 
+$assassin->attaquer($guerrier);
+echo $guerrier->getNom() . " n'a désormais plus que " . $guerrier->getVie() . " . PV.";
 
-
-$partie = new Partie($nedFlanders, $homerSimpson);
-$partie->lancerPartie();
+VarDumper::dump($guerrier);
