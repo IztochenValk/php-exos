@@ -2,19 +2,19 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Model\CompteBancaire;
-use App\Model\Personne;
+use App\Model\Partie;
+use App\Model\Joueur;
+use App\Model\Des;
 
 use Symfony\Component\VarDumper\VarDumper;
 
-$nedFlanders = new Personne("Ned", "Flanders");
-$nedFlandersBank = new CompteBancaire($nedFlanders, 18524.36);
+$desJ1 = new Des(0, 6);
+$desJ2 = new Des(0, 6);
 
-$homerSimpson = new Personne("Homer", "Simpson", );
-$homerSimpsonBank = new CompteBancaire($homerSimpson, -2152.78);
+$nedFlanders = new Joueur("Ned Flanders", $desJ1);
+$homerSimpson = new Joueur("Homer Simpson", $desJ2);
 
 
-VarDumper::dump($nedFlandersBank);
-VarDumper::dump($homerSimpsonBank);
 
-$nedFlandersBank->transferer($homerSimpsonBank, 5678.24);
+$partie = new Partie($nedFlanders, $homerSimpson);
+$partie->lancerPartie();
